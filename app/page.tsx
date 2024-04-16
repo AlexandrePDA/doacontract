@@ -13,13 +13,13 @@ const PDFViewer = dynamic(
 
 import Contract from "@/components/Contract";
 import { useState } from "react";
-import { DayPicker } from "react-day-picker";
+import { ClassNames, DayPicker } from "react-day-picker";
 import namesData from "@/utils/datas.json";
 import { fr } from "date-fns/locale";
+import styles from "react-day-picker/dist/style.module.css";
 
 export default function Home() {
   const [name, setName] = useState<string>("");
-  const [adeli, setAdeli] = useState<string>("");
   const initialDays: Date[] = [];
   const [days, setDays] = useState<Date[] | undefined>(initialDays);
   const [periode, setPeriode] = useState<Date[] | undefined>(initialDays);
@@ -78,13 +78,17 @@ export default function Home() {
   const year = dateToday.getFullYear();
   const formattedDateToday = `${day} ${month} ${year}`;
 
+  const classNames: ClassNames = {
+    ...styles,
+    head: "custom-head",
+  };
+
   return (
-    <main className="flex max-w-screen-2xl  mx-auto flex-col items-center justify-between p-24">
+    <main className="flex   mx-auto flex-col items-center justify-between p-24">
       <div className="flex gap-4   w-full h-screen">
         <PDFViewer className=" w-1/2">
           <Contract
             name={name}
-            adeli="0102"
             date={formattedDates.join(", ")}
             periode={formattedPeriode.join(" au ")}
             now={formattedDateToday}
@@ -96,7 +100,9 @@ export default function Home() {
             <p className="bg-blue-500 text-lg text-white rounded-full p-4 w-8 h-8 flex items-center justify-center">
               1
             </p>
-            <h3 className="font-bold text-lg">Selectionne l'infirmier-e</h3>
+            <h3 className="font-bold text-lg my-4">
+              Sélectionne l'infirmier-e
+            </h3>
           </div>
           <select
             className="m-4 border p-2 rounded-md"
@@ -114,34 +120,43 @@ export default function Home() {
             <p className="bg-blue-500 text-lg text-white rounded-full p-4 w-8 h-8 flex items-center justify-center">
               2
             </p>
-            <h3 className="font-bold text-lg">Selectionne la période</h3>
+            <h3 className="font-bold text-lg my-4">Sélectionne la période</h3>
+            {periode && periode.length > 0 ? (
+              <button className="" onClick={resetPeriode}>
+                ❌
+              </button>
+            ) : null}
           </div>
+          <style>{`.custom-head { color: blue }`}</style>
           <DayPicker
             mode="multiple"
             max={2}
             selected={periode}
             locale={fr}
             onSelect={setPeriode}
+            classNames={classNames}
+            numberOfMonths={2}
           />
-          <button
-            className="bg-red-500 text-white py-2 px-4 rounded-md"
-            onClick={resetPeriode}
-          >
-            Réinitialiser
-          </button>
+
           {periode && periode.length > 0 ? (
-            <p>Période selectionnée ➡️ {formattedPeriode.join(", ")}.</p>
+            <p className="italic">
+              Période selectionnée ➡️ {formattedPeriode.join(", ")}.
+            </p>
           ) : null}
 
-          <div className="flex gap-4 items-center  m-2">
+          <div className="flex gap-4 items-center m-2">
             <p className="bg-blue-500 text-lg text-white rounded-full p-4 w-8 h-8 flex items-center justify-center">
               3
             </p>
-            <h3 className="font-bold text-lg">
-              Selectionne les dates travaillées
+            <h3 className="font-bold text-lg my-4">
+              Sélectionne les dates travaillées
             </h3>
+            {days && days.length > 0 ? (
+              <button onClick={resetDays}>❌</button>
+            ) : null}
           </div>
           <div className="w-full">
+            <style>{`.custom-head { color: blue }`}</style>
             <DayPicker
               className=" w-full"
               numberOfMonths={2}
@@ -150,16 +165,15 @@ export default function Home() {
               min={1}
               selected={days}
               onSelect={setDays}
+              classNames={classNames}
             />
           </div>
-          <button
-            className="bg-red-500 text-white py-2 px-4 rounded-md"
-            onClick={resetDays}
-          >
-            Réinitialiser
-          </button>
+
           {days && days.length > 0 ? (
-            <p>Date(s) selectionnée(s) ➡️ {formattedDates.join(", ")}.</p>
+            <p className="italic">
+              {formattedDates.length} Date(s) selectionnée(s) ➡️{" "}
+              {formattedDates.join(", ")}.
+            </p>
           ) : null}
         </div>
       </div>

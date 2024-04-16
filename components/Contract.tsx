@@ -4,7 +4,6 @@ import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
 
 interface ContractProps {
   name: string;
-  adeli: string;
   date: string;
   periode: string;
   now: string;
@@ -13,6 +12,7 @@ interface ContractProps {
 // Create styles
 const styles = StyleSheet.create({
   page: {
+    padding: 25,
     flexDirection: "row",
   },
   section: {
@@ -24,11 +24,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 20,
   },
-  body: { marginTop: 5 },
-  subtitle: { fontWeight: "bold", marginTop: 20 },
-  bottom: { marginTop: 20 },
+  personne: { fontSize: 15 },
+  body: { marginTop: 5, fontSize: 15 },
+  subtitle: { fontWeight: "bold", marginTop: 20, fontSize: 15 },
+  bottom: { marginTop: 20, fontSize: 15 },
   professionnel: {
     marginTop: 15,
+    fontSize: 15,
   },
   firstsignature: {
     marginTop: 20,
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
 });
 
 // Create Document Component
-const Contract = ({ name, date, periode, adeli, now }: ContractProps) => (
+const Contract = ({ name, date, periode, now }: ContractProps) => (
   <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
@@ -52,25 +54,25 @@ const Contract = ({ name, date, periode, adeli, now }: ContractProps) => (
           <Text style={styles.title}>CONTRAT DE REMPLACEMENT</Text>
         </View>
 
-        <Text>Entre les soussignées :</Text>
-        <Text>D'une part:</Text>
-        <Text>Mme Bourgallé Élodie </Text>
-        <Text>Adeli: 776174070</Text>
-        <Text>Mme Barry Isabelle</Text>
-        <Text>Adeli: 776148066 </Text>
-        <Text>Mme Cadaut Marion</Text>
-        <Text>Adeli: 776235236</Text>
+        <Text style={styles.personne}>Entre les soussignées :</Text>
+        <Text style={styles.personne}>D'une part:</Text>
+        <Text style={styles.personne}>Mme Bourgallé Élodie </Text>
+        <Text style={styles.personne}>Adeli: 776174070</Text>
+        <Text style={styles.personne}>Mme Barry Isabelle</Text>
+        <Text style={styles.personne}>Adeli: 776148066 </Text>
+        <Text style={styles.personne}>Mme Cadaut Marion</Text>
+        <Text style={styles.personne}>Adeli: 776235236</Text>
         <Text style={styles.professionnel}>D'autre part :</Text>
-        <Text>{name} </Text>
+        <Text style={styles.personne}>{name} </Text>
         <Text style={styles.subtitle}>Article 1/ </Text>
         <Text style={styles.body}>
           Mesdames Bourgallé, Barry et Cadaut, infirmières libérales, dont le
           cabinet sis 7 Rue des Fossés 77620 ÉGREVILLE mettent à la disposition
-          de {name}, infirmière libérale, leur patientèle aux conditions citées
-          aux articles suivants,
+          de {name}, infirmier-e libéral-e, leur patientèle aux conditions
+          citées aux articles suivants,
         </Text>
         <Text style={styles.subtitle}>Article 2/</Text>
-        <Text>Mise à disposition de la patientèle :</Text>
+        <Text style={styles.body}>Mise à disposition de la patientèle :</Text>
 
         <Text style={styles.body}>
           Bien que n'utilisant pas ses propres feuilles de soins auprès de la
@@ -81,20 +83,20 @@ const Contract = ({ name, date, periode, adeli, now }: ContractProps) => (
           droits de la patientèle.
         </Text>
         <Text style={styles.subtitle}>Article 3/</Text>
-        <Text>Conditions d'exercices :</Text>
+        <Text style={styles.body}>Conditions d'exercices :</Text>
         <Text style={styles.body}>
           Mesdames Bourgallé, Barry et Cadaut encaisseront les honoraires des
-          patients et les rétrocéderont à{name} dans un délai d'un mois avec
+          patients et les rétrocéderont à {name} dans un délai d'un mois avec
           rétrocession à hauteur de 10%.
         </Text>
         <Text style={styles.subtitle}>Article 4/</Text>
-        <Text>Assurances et charges : </Text>
+        <Text style={styles.body}>Assurances et charges : </Text>
         <Text style={styles.body}>
           {name} paiera les charges fiscales et sociales liées à son mode
-          d'exercice, devra être inscrite à l'ordre infirmier.
+          d'exercice, devra être inscrit-e à l'ordre infirmier.
           {name} s'engage à souscrire une assurance garantissant sa
           responsabilité professionnelle et présentera une attestation de
-          Remplaçante.
+          Remplaçant-e.
         </Text>
         <Text style={styles.subtitle}>Article 5/</Text>
         <Text style={styles.body}>
@@ -102,7 +104,7 @@ const Contract = ({ name, date, periode, adeli, now }: ContractProps) => (
         </Text>
         <Text style={styles.body}>Dates travaillées : {date}</Text>
         <Text style={styles.subtitle}>Article 6/</Text>
-        <Text>Organisation du travail :</Text>
+        <Text style={styles.body}>Organisation du travail :</Text>
         <Text style={styles.body}>
           {name} s'engage à réaliser à l'issue de chaque journée de travail, et
           à chaque veille de travail, les transmissions avec les infirmières
@@ -125,10 +127,10 @@ const Contract = ({ name, date, periode, adeli, now }: ContractProps) => (
         <Text style={styles.bottom}>Fait à EGREVILLE, </Text>
         <Text style={styles.bottom}>Le {now}, "lu et approuvé"</Text>
         <View style={styles.signature}>
-          <Text>BOUGALLE ÉLODIE</Text>
-          <Text>BARRY ISABELLE </Text>
-          <Text>CADAUT MARION</Text>
-          <Text>{name.toUpperCase()}</Text>
+          <Text style={styles.personne}>BOUGALLE ÉLODIE</Text>
+          <Text style={styles.personne}>BARRY ISABELLE </Text>
+          <Text style={styles.personne}>CADAUT MARION</Text>
+          <Text style={styles.personne}>{name.toUpperCase()}</Text>
         </View>
       </View>
     </Page>
