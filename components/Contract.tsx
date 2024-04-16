@@ -7,6 +7,7 @@ interface ContractProps {
   adeli: string;
   date: string;
   periode: string;
+  now: string;
 }
 
 // Create styles
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
 });
 
 // Create Document Component
-const Contract = ({ name, date, periode, adeli }: ContractProps) => (
+const Contract = ({ name, date, periode, adeli, now }: ContractProps) => (
   <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
@@ -69,24 +70,28 @@ const Contract = ({ name, date, periode, adeli }: ContractProps) => (
           aux articles suivants,
         </Text>
         <Text style={styles.subtitle}>Article 2/</Text>
+        <Text>Mise à disposition de la patientèle :</Text>
+
         <Text style={styles.body}>
-          Mise à disposition de la patientèle: Bien que n'utilisant pas ses
-          propres feuilles de soins auprès de la patientèle de Mesdames
-          Bourgallé, Barry et Cadaut, {name} exercera sa profession d'infirmière
-          et prodiguera des soins auprès de la patientèle de Mesdames Bourgallé,
-          Barry et Cadaut. Dans tous les cas Mesdames Bourgallé, Barry et Cadaut
-          resteront seules titulaires des droits de la patientèle.
+          Bien que n'utilisant pas ses propres feuilles de soins auprès de la
+          patientèle de Mesdames Bourgallé, Barry et Cadaut, {name} exercera sa
+          profession d'infirmière et prodiguera des soins auprès de la
+          patientèle de Mesdames Bourgallé, Barry et Cadaut. Dans tous les cas
+          Mesdames Bourgallé, Barry et Cadaut resteront seules titulaires des
+          droits de la patientèle.
         </Text>
         <Text style={styles.subtitle}>Article 3/</Text>
+        <Text>Conditions d'exercices :</Text>
         <Text style={styles.body}>
-          Conditions d'exercices: Mesdames Bourgallé, Barry et Cadaut
-          encaisseront les honoraires des patients et les rétrocéderont à{name}{" "}
-          dans un délai d'un mois avec rétrocession à hauteur de 10%.
+          Mesdames Bourgallé, Barry et Cadaut encaisseront les honoraires des
+          patients et les rétrocéderont à{name} dans un délai d'un mois avec
+          rétrocession à hauteur de 10%.
         </Text>
         <Text style={styles.subtitle}>Article 4/</Text>
+        <Text>Assurances et charges : </Text>
         <Text style={styles.body}>
-          Assurances et charges : {name} paiera les charges fiscales et sociales
-          liées à son mode d'exercice, devra être inscrite à l'ordre infirmier.
+          {name} paiera les charges fiscales et sociales liées à son mode
+          d'exercice, devra être inscrite à l'ordre infirmier.
           {name} s'engage à souscrire une assurance garantissant sa
           responsabilité professionnelle et présentera une attestation de
           Remplaçante.
@@ -94,16 +99,16 @@ const Contract = ({ name, date, periode, adeli }: ContractProps) => (
         <Text style={styles.subtitle}>Article 5/</Text>
         <Text style={styles.body}>
           Ce présent contrat est conclu pour une période allant du {periode}.
-          Dates travaillées: {date}
         </Text>
+        <Text style={styles.body}>Dates travaillées : {date}</Text>
         <Text style={styles.subtitle}>Article 6/</Text>
+        <Text>Organisation du travail :</Text>
         <Text style={styles.body}>
-          Organisation du travail. {name} s'engage à réaliser à l'issue de
-          chaque journée de travail, et à chaque veille de travail, les
-          transmissions avec les infirmières concernées sur le planning. Elles
-          se feront par téléphone ou sur messagerie sécurisée, et devront
-          restituer fidèlement l'état, le comportement, les traitements de
-          chaque patient.
+          {name} s'engage à réaliser à l'issue de chaque journée de travail, et
+          à chaque veille de travail, les transmissions avec les infirmières
+          concernées sur le planning. Elles se feront par téléphone ou sur
+          messagerie sécurisée, et devront restituer fidèlement l'état, le
+          comportement, les traitements de chaque patient.
         </Text>
         <Text style={styles.subtitle}>Article 7/</Text>
         <Text style={styles.body}>
@@ -118,7 +123,7 @@ const Contract = ({ name, date, periode, adeli }: ContractProps) => (
           vient modifier les clauses du contrat.
         </Text>
         <Text style={styles.bottom}>Fait à EGREVILLE, </Text>
-        <Text style={styles.bottom}>Le 13 janvier 2024, "lu et approuvé"</Text>
+        <Text style={styles.bottom}>Le {now}, "lu et approuvé"</Text>
         <View style={styles.signature}>
           <Text>BOUGALLE ÉLODIE</Text>
           <Text>BARRY ISABELLE </Text>

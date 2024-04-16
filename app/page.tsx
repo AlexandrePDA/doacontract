@@ -48,6 +48,27 @@ export default function Home() {
     setPeriode([]);
   };
 
+  // formater date du jour pour contrat
+  const dateToday = new Date();
+  const monthsEx = [
+    "janvier",
+    "février",
+    "mars",
+    "avril",
+    "mai",
+    "juin",
+    "juillet",
+    "août",
+    "septembre",
+    "octobre",
+    "novembre",
+    "décembre",
+  ];
+  const day = dateToday.getDate();
+  const month = monthsEx[dateToday.getMonth()];
+  const year = dateToday.getFullYear();
+  const formattedDateToday = `${day} ${month} ${year}`;
+
   return (
     <main className="flex max-w-screen-2xl  mx-auto flex-col items-center justify-between p-24">
       <div className="flex gap-4   w-full h-screen">
@@ -57,6 +78,7 @@ export default function Home() {
             adeli="0102"
             date={formattedDates.join(", ")}
             periode={formattedPeriode.join(" au ")}
+            now={formattedDateToday}
           />
         </PDFViewer>
 
