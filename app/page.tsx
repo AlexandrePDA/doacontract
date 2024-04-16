@@ -21,8 +21,8 @@ export default function Home() {
     setName(selectedName);
   };
 
-  const compareDates = (a, b) => {
-    return new Date(a) - new Date(b);
+  const compareDates = (a: Date, b: Date): number => {
+    return a.getTime() - b.getTime();
   };
 
   // Tri des dates par ordre chronologique
