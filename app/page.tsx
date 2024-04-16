@@ -17,6 +17,7 @@ import { ClassNames, DayPicker } from "react-day-picker";
 import namesData from "@/utils/datas.json";
 import { fr } from "date-fns/locale";
 import styles from "react-day-picker/dist/style.module.css";
+import NavBar from "@/components/NavBar";
 
 export default function Home() {
   const [name, setName] = useState<string>("");
@@ -84,99 +85,102 @@ export default function Home() {
   };
 
   return (
-    <main className="flex   mx-auto flex-col items-center justify-between p-24">
-      <div className="flex gap-4   w-full h-screen">
-        <PDFViewer className=" w-1/2">
-          <Contract
-            name={name}
-            date={formattedDates.join(", ")}
-            periode={formattedPeriode.join(" au ")}
-            now={formattedDateToday}
-          />
-        </PDFViewer>
+    <>
+      <NavBar />
+      <main className="flex   mx-auto flex-col items-center justify-between p-24">
+        <div className="flex gap-4   w-full h-screen">
+          <PDFViewer className=" w-1/2">
+            <Contract
+              name={name}
+              date={formattedDates.join(", ")}
+              periode={formattedPeriode.join(" au ")}
+              now={formattedDateToday}
+            />
+          </PDFViewer>
 
-        <div className="w-1/2">
-          <div className="flex gap-4 items-center  m-2">
-            <p className="bg-blue-500 text-lg text-white rounded-full p-4 w-8 h-8 flex items-center justify-center">
-              1
-            </p>
-            <h3 className="font-bold text-lg my-4">
-              Sélectionne l'infirmier-e
-            </h3>
-          </div>
-          <select
-            className="m-4 border p-2 rounded-md"
-            value={name}
-            onChange={(event) => handleNameChange(event.target.value)}
-          >
-            <option value="">Nom Prénom</option>
-            {names.map((name, index) => (
-              <option key={index} value={name.name}>
-                {name.name}
-              </option>
-            ))}
-          </select>
-          <div className="flex gap-4 items-center  m-2">
-            <p className="bg-blue-500 text-lg text-white rounded-full p-4 w-8 h-8 flex items-center justify-center">
-              2
-            </p>
-            <h3 className="font-bold text-lg my-4">Sélectionne la période</h3>
-            {periode && periode.length > 0 ? (
-              <button className="" onClick={resetPeriode}>
-                ❌
-              </button>
-            ) : null}
-          </div>
-          <style>{`.custom-head { color: blue }`}</style>
-          <DayPicker
-            mode="multiple"
-            max={2}
-            selected={periode}
-            locale={fr}
-            onSelect={setPeriode}
-            classNames={classNames}
-            numberOfMonths={2}
-          />
-
-          {periode && periode.length > 0 ? (
-            <p className="italic">
-              Période selectionnée ➡️ {formattedPeriode.join(", ")}.
-            </p>
-          ) : null}
-
-          <div className="flex gap-4 items-center m-2">
-            <p className="bg-blue-500 text-lg text-white rounded-full p-4 w-8 h-8 flex items-center justify-center">
-              3
-            </p>
-            <h3 className="font-bold text-lg my-4">
-              Sélectionne les dates travaillées
-            </h3>
-            {days && days.length > 0 ? (
-              <button onClick={resetDays}>❌</button>
-            ) : null}
-          </div>
-          <div className="w-full">
+          <div className="w-1/2">
+            <div className="flex gap-4 items-center  m-2">
+              <p className="bg-blue-500 text-lg text-white rounded-full p-4 w-8 h-8 flex items-center justify-center">
+                1
+              </p>
+              <h3 className="font-bold text-lg my-4">
+                Sélectionne l'infirmier-e
+              </h3>
+            </div>
+            <select
+              className="m-4 border p-2 rounded-md"
+              value={name}
+              onChange={(event) => handleNameChange(event.target.value)}
+            >
+              <option value="">Nom Prénom</option>
+              {names.map((name, index) => (
+                <option key={index} value={name.name}>
+                  {name.name}
+                </option>
+              ))}
+            </select>
+            <div className="flex gap-4 items-center  m-2">
+              <p className="bg-blue-500 text-lg text-white rounded-full p-4 w-8 h-8 flex items-center justify-center">
+                2
+              </p>
+              <h3 className="font-bold text-lg my-4">Sélectionne la période</h3>
+              {periode && periode.length > 0 ? (
+                <button className="" onClick={resetPeriode}>
+                  ❌
+                </button>
+              ) : null}
+            </div>
             <style>{`.custom-head { color: blue }`}</style>
             <DayPicker
-              className=" w-full"
-              numberOfMonths={2}
-              locale={fr}
               mode="multiple"
-              min={1}
-              selected={days}
-              onSelect={setDays}
+              max={2}
+              selected={periode}
+              locale={fr}
+              onSelect={setPeriode}
               classNames={classNames}
+              numberOfMonths={2}
             />
-          </div>
 
-          {days && days.length > 0 ? (
-            <p className="italic">
-              {formattedDates.length} Date(s) selectionnée(s) ➡️{" "}
-              {formattedDates.join(", ")}.
-            </p>
-          ) : null}
+            {periode && periode.length > 0 ? (
+              <p className="italic">
+                Période selectionnée ➡️ {formattedPeriode.join(", ")}.
+              </p>
+            ) : null}
+
+            <div className="flex gap-4 items-center m-2">
+              <p className="bg-blue-500 text-lg text-white rounded-full p-4 w-8 h-8 flex items-center justify-center">
+                3
+              </p>
+              <h3 className="font-bold text-lg my-4">
+                Sélectionne les dates travaillées
+              </h3>
+              {days && days.length > 0 ? (
+                <button onClick={resetDays}>❌</button>
+              ) : null}
+            </div>
+            <div className="w-full">
+              <style>{`.custom-head { color: blue }`}</style>
+              <DayPicker
+                className=" w-full"
+                numberOfMonths={2}
+                locale={fr}
+                mode="multiple"
+                min={1}
+                selected={days}
+                onSelect={setDays}
+                classNames={classNames}
+              />
+            </div>
+
+            {days && days.length > 0 ? (
+              <p className="italic">
+                {formattedDates.length} Date(s) selectionnée(s) ➡️{" "}
+                {formattedDates.join(", ")}.
+              </p>
+            ) : null}
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 }
