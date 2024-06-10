@@ -57,11 +57,11 @@ const Contract = ({ name, date, periode, now }: ContractProps) => (
         <Text style={styles.personne}>Entre les soussignées :</Text>
         <Text style={styles.personne}>D'une part:</Text>
         <Text style={styles.personne}>Mme Bourgallé Élodie </Text>
-        <Text style={styles.personne}>Adeli: 776174070</Text>
+        <Text style={styles.personne}>RPPS : 10102516746</Text>
         <Text style={styles.personne}>Mme Barry Isabelle</Text>
-        <Text style={styles.personne}>Adeli: 776148066 </Text>
+        <Text style={styles.personne}>RPPS : 10104846851</Text>
         <Text style={styles.personne}>Mme Cadaut Marion</Text>
-        <Text style={styles.personne}>Adeli: 776235236</Text>
+        <Text style={styles.personne}>RPPS : 10103832431</Text>
         <Text style={styles.professionnel}>D'autre part :</Text>
         <Text style={styles.personne}>{name} </Text>
         <Text style={styles.subtitle}>Article 1/ </Text>
