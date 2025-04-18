@@ -21,14 +21,31 @@ import NavBar from "@/components/NavBar";
 
 export default function Home() {
   const [name, setName] = useState<string>("");
+  const [nameNurse1, setNameNurse1] = useState<string>("");
+
   const initialDays: Date[] = [];
   const [days, setDays] = useState<Date[] | undefined>(initialDays);
   const [periode, setPeriode] = useState<Date[] | undefined>(initialDays);
 
   const names = namesData;
+  const nameNurse = [
+    {
+      name: "Isabelle BARRY, ADELI : 776148066",
+    },
+    {
+      name: "Marion CADAUT, ADELI : 776235236",
+    },
+    {
+      name: "Elodie BOURGALLE, ADELI : 776174070",
+    },
+  ];
 
   const handleNameChange = (selectedName: string) => {
     setName(selectedName);
+  };
+
+  const handleNameChangeNurse = (selectedName: string) => {
+    setNameNurse1(selectedName);
   };
 
   const compareDates = (a: Date, b: Date): number => {
@@ -95,6 +112,7 @@ export default function Home() {
               date={formattedDates.join(", ")}
               periode={formattedPeriode.join(" au ")}
               now={formattedDateToday}
+              nameNurse={nameNurse1}
             />
           </PDFViewer>
 
@@ -104,7 +122,28 @@ export default function Home() {
                 1
               </p>
               <h3 className="font-bold text-lg my-4">
-                Sélectionne l'infirmier-e
+                Sélectionne l'infirmiere à remplacer
+              </h3>
+            </div>
+            <select
+              className="m-4 border p-2 rounded-md"
+              value={nameNurse1}
+              onChange={(event) => handleNameChangeNurse(event.target.value)}
+            >
+              <option value="">Nom Prénom</option>
+              {nameNurse.map((name, index) => (
+                <option key={index} value={name.name}>
+                  {name.name}
+                </option>
+              ))}
+            </select>
+
+            <div className="flex gap-4 items-center  m-2">
+              <p className="bg-blue-500 text-lg text-white rounded-full p-4 w-8 h-8 flex items-center justify-center">
+                2
+              </p>
+              <h3 className="font-bold text-lg my-4">
+                Sélectionne l'infirmier-e remplaçant-e
               </h3>
             </div>
             <select
@@ -121,7 +160,7 @@ export default function Home() {
             </select>
             <div className="flex gap-4 items-center  m-2">
               <p className="bg-blue-500 text-lg text-white rounded-full p-4 w-8 h-8 flex items-center justify-center">
-                2
+                3
               </p>
               <h3 className="font-bold text-lg my-4">Sélectionne la période</h3>
               {periode && periode.length > 0 ? (
@@ -149,7 +188,7 @@ export default function Home() {
 
             <div className="flex gap-4 items-center m-2">
               <p className="bg-blue-500 text-lg text-white rounded-full p-4 w-8 h-8 flex items-center justify-center">
-                3
+                4
               </p>
               <h3 className="font-bold text-lg my-4">
                 Sélectionne les dates travaillées
