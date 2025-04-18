@@ -64,7 +64,7 @@ const Contract = ({ name, date, periode, now, nameNurse }: ContractProps) => (
         <Text style={styles.subtitle}>Article 1/ </Text>
         <Text style={styles.body}>
           {nameNurse.split(",")[0]} infirmièr-e libérale, dont le cabinet sis 7
-          Rue des Fossés 77620 ÉGREVILLE mettent à la disposition de {name},
+          Rue des Fossés 77620 ÉGREVILLE met à la disposition de {name},
           infirmier-e libéral-e, leur patientèle aux conditions citées aux
           articles suivants,
         </Text>
