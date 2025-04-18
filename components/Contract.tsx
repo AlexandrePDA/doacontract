@@ -65,7 +65,7 @@ const Contract = ({ name, date, periode, now, nameNurse }: ContractProps) => (
         <Text style={styles.body}>
           {nameNurse.split(",")[0]} infirmièr-e libérale, dont le cabinet sis 7
           Rue des Fossés 77620 ÉGREVILLE met à la disposition de {name},
-          infirmier-e libéral-e, leur patientèle aux conditions citées aux
+          infirmier-e libéral-e, sa patientèle aux conditions citées aux
           articles suivants,
         </Text>
         <Text style={styles.subtitle}>Article 2/</Text>
@@ -81,9 +81,7 @@ const Contract = ({ name, date, periode, now, nameNurse }: ContractProps) => (
         <Text style={styles.subtitle}>Article 3/</Text>
         <Text style={styles.body}>Conditions d'exercices :</Text>
         <Text style={styles.body}>
-          {nameNurse.split(",")[0]} encaisse les honoraires des patients et les
-          rétrocéderont à {name} dans un délai d'un mois avec rétrocession à
-          hauteur de 10%.
+          {nameNurse.split(",")[0]} encaisse les honoraires des patients et les rétrocèdera à {name} dans un délai d'un mois avec rétrocession à hauteur de 10%.
         </Text>
         <Text style={styles.subtitle}>Article 4/</Text>
         <Text style={styles.body}>Assurances et charges : </Text>
