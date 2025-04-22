@@ -38,6 +38,7 @@ export default function Home() {
     {
       name: "Elodie BOURGALLE, ADELI : 776174070",
     },
+{name:"Franck MUTIN, ADELI : 77 623 7992",}
   ];
 
   const handleNameChange = (selectedName: string) => {
